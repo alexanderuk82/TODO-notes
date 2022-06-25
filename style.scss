@@ -20,7 +20,7 @@
   //fonts
 
   --main-font: roboto, sans-serif;
-  --tile-font: roboto-condensed, sans-serif;
+  --title-font: roboto-condensed, sans-serif;
 }
 
 $fontFamily: (
@@ -37,6 +37,15 @@ $colours: (
   'black-50': var(--black-50),
   'black-30': var(--black-30),
 );
+$bg-colours: (
+  'bg-body': var(--body),
+  'bg-text': var(--text),
+  'bg-remove': var(--remove),
+  'bg-highlight': var(--higlight),
+  'bg-black-70': var(--black-70),
+  'bg-black-50': var(--black-50),
+  'bg-black-30': var(--black-30),
+);
 
 //Generate colurs clasess
 
@@ -44,4 +53,16 @@ $colours: (
   .#{$name} {
     color: $colour;
   }
+}
+
+@each $name, $colour in $bg-colours {
+  .#{$name} {
+    background: $colour;
+  }
+}
+
+//Font family for each style
+
+.title {
+  font-family: map-get($fontFamily, title);
 }
