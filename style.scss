@@ -1,0 +1,47 @@
+*::after,
+*::before,
+* {
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --body: hsl(80, 4%, 14%);
+  --text: hsl(35, 63%, 88%);
+  --remove: hsl(7, 74%, 60%);
+  --higlight: hsl(177, 38%, 54%);
+
+  //Black colours
+
+  --black-70: hsl(50, 7%, 18%);
+  --black-50: hsl(60, 3%, 22%);
+  --black-30: hsl(80, 5%, 11%);
+
+  //fonts
+
+  --main-font: roboto, sans-serif;
+  --tile-font: roboto-condensed, sans-serif;
+}
+
+$fontFamily: (
+  'body': var(--main-font),
+  'title': var(--title-font),
+);
+
+$colours: (
+  'body': var(--body),
+  'text': var(--text),
+  'remove': var(--remove),
+  'highlight': var(--higlight),
+  'black-70': var(--black-70),
+  'black-50': var(--black-50),
+  'black-30': var(--black-30),
+);
+
+//Generate colurs clasess
+
+@each $name, $colour in $colours {
+  .#{$name} {
+    color: $colour;
+  }
+}
