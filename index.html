@@ -14,18 +14,65 @@
     <link rel="stylesheet" href="css/style.css" />
     <title>TODO notes</title>
   </head>
-  <body class="bg-body">
+  <body class="bg-body body">
     <header class="bg-black-70 h-[332px]">
       <div class="container flex flex-col items-center justify-center h-full">
         <h1
-          class="black-30  font-semibold tracking-wider opacity-10 uppercase text-[60px]"
+          class="black-30 font-semibold tracking-wider opacity-10 uppercase text-[60px]"
         >
           to do list
         </h1>
-        <h2 class="text title capitalize text-[49px] font-light">
+        <h2 class="text title capitalize text-[49px] font-light mt-[-3rem]">
           create your task
         </h2>
+
+        <form action="#" id="form" class="form w-full px-6">
+          <div class="form__field flex flex-col items-center gap-2">
+            <input
+              class="p-3 w-full rounded bg-black-50 inputBorder focus: outline-none text"
+              type="text"
+              id="input text"
+            />
+            <button
+              type="submit"
+              id="addbtn"
+              class="flex text-[25px] highlight font-semibold"
+            >
+              <img class="mr-1" src="/img/plus.svg" alt="" />
+              ADD
+            </button>
+          </div>
+        </form>
       </div>
     </header>
+    <main class="results my-[4rem]" id="results">
+      <div class="results__items justify-items-center md:justify-items-start md:mx-[3rem]">
+        <!-- Grid note here placed!! -->
+        <div
+          class="note grid gap-4 h-[315px] w-[342px] bg-black-50 borderBox rounded p-5"
+        >
+          <div class="date">
+            <img src="/img/calendar.svg" alt="" />
+            <p>10/10/2022</p>
+          </div>
+          <div class="content">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
+              ipsum saepe ratione
+            </p>
+          </div>
+
+          <div class="bottom">
+            <div class="tag" id="tag">
+              <p>new</p>
+            </div>
+
+            <button class="remove" id="remove">
+              <img src="/img/trash.svg" alt="" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
   </body>
 </html>

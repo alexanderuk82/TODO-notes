@@ -16,6 +16,7 @@
   --black-70: hsl(50, 7%, 18%);
   --black-50: hsl(60, 3%, 22%);
   --black-30: hsl(80, 5%, 11%);
+  --boxes: hsl(0, 0%, 44%);
 
   //fonts
 
@@ -36,6 +37,7 @@ $colours: (
   'black-70': var(--black-70),
   'black-50': var(--black-50),
   'black-30': var(--black-30),
+  'box': var(--boxes),
 );
 $bg-colours: (
   'bg-body': var(--body),
@@ -65,4 +67,74 @@ $bg-colours: (
 
 .title {
   font-family: map-get($fontFamily, title);
+}
+.body {
+  font-family: map-get($fontFamily, body);
+}
+
+//Styles for our border
+
+.inputBorder {
+  border: 1px dashed var(--higlight);
+}
+.borderBox {
+  border: 1px dashed var(--boxes);
+}
+
+// Grid layour for results
+
+.results__items {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  
+}
+
+//Styles for boxes
+
+.note {
+  .date {
+    display: flex;
+
+    p {
+      color: map-get($colours, highlight);
+      font-weight: 500;
+      font-size: 1.2rem;
+      margin-left: 0.5rem;
+    }
+    img {
+      width: 26.6px;
+      height: 26.6px;
+    }
+  }
+
+  .content {
+    font-weight: 300;
+    color: map-get($colours, text);
+    overflow: hidden;
+
+    p {
+      font-size: 1.22rem;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  .bottom {
+    align-self: end;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    align-items: center;
+    .tag {
+      color: map-get($colours, highlight);
+      text-transform: uppercase;
+      padding: 0.2rem 0.8rem;
+      background-color: map-get($bg-colours, bg-text);
+      border-radius: 1rem;
+      font-size: 13px;
+    }
+  }
 }
