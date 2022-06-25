@@ -4,6 +4,7 @@ const form = document.getElementById('form');
 const text = document.getElementById('input');
 const addBtn = document.getElementById('addBtn');
 const results = document.querySelector('.results__items');
+
 let task = [];
 
 // Dates
@@ -12,6 +13,7 @@ const fullDate = new Date();
 const day = fullDate.getDay();
 const month = fullDate.getMonth();
 const year = fullDate.getFullYear();
+const currentDate = `${day}/${month}/${year}`;
 
 startApp();
 
@@ -21,7 +23,10 @@ function startApp() {
   form.addEventListener('submit', addTask);
 
   //Read from local storage
-  document.addEventListener('DOMContentLoaded', loadStorage);
+  document.addEventListener('DOMContentLoaded', () => {
+    task = JSON.parse(localStorage.getItem('notes')) || [];
+    addNote();
+  });
 }
 
 // **Function add task
@@ -37,9 +42,9 @@ function addTask() {
     };
 
     task = [...task, taskObject];
-    console.log(task);
-    storage();
-    addNote(taskObject);
+
+    storage(task);
+    addNote();
 
     form.reset();
   } else {
@@ -49,45 +54,62 @@ function addTask() {
 
 // **Function add note inside od the container
 
-function addNote(task) {
-  const note = document.createElement('div');
-  note.classList.add(
-    'note',
-    'grid',
-    'gap-4',
-    'h-[315px]',
-    'w-[342px]',
-    'bg-black-50',
-    'borderBox',
-    'rounded',
-    'p-5'
-  );
+function addNote() {
+  clearHtml();
+  task.forEach((task) => {
+    const note = document.createElement('div');
+    note.classList.add(
+      'note',
+      'grid',
+      'gap-4',
+      'h-[315px]',
+      'w-[342px]',
+      'bg-black-50',
+      'borderBox',
+      'rounded',
+      'p-5'
+    );
 
-  note.innerHTML = `
+    note.innerHTML = `
+        
+     <div class="date">
+        <img src="/img/calendar.svg" alt="" />
+        <p>${task.date}</p>
+          </div>
+         <div class="content">
+              <p>
+              ${task.text}
+             </p>
+          </div>
     
- <div class="date">
-    <img src="/img/calendar.svg" alt="" />
-    <p>${task.date}</p>
-      </div>
-     <div class="content">
-          <p>
-          ${task.text}
-         </p>
-      </div>
+      <div class="bottom">
+         <div class="tag" id="tag">
+          <p>TO DO</p>
+         </div>
+    
+         <button class="remove" id="remove">
+          <img src="/img/trash.svg" alt="" />
+         </button>
+       </div>  
+      
+        `;
 
-  <div class="bottom">
-     <div class="tag" id="tag">
-      <p>new</p>
-     </div>
+    results.appendChild(note);
 
-     <button class="remove" id="remove">
-      <img src="/img/trash.svg" alt="" />
-     </button>
-   </div>  
-  
-    `;
+    const btnRemove = note.children[2].children[1];
 
-  results.appendChild(note);
+    btnRemove.addEventListener('click', () => {
+      deleting(task.id);
+    });
+  });
+}
+
+//**Deleting */
+
+function deleting(itemId) {
+  task = task.filter((tasks) => tasks.id !== itemId);
+  addNote();
+  storage();
 }
 
 //** Storage */
@@ -96,8 +118,10 @@ function storage() {
   localStorage.setItem('notes', JSON.stringify(task));
 }
 
-//** LOAD Storage */
+//** Clear Html*/
 
-function loadStorage() {
-  console.log('leyendo');
+function clearHtml() {
+  while (results.firstChild) {
+    results.removeChild(results.firstChild);
+  }
 }
