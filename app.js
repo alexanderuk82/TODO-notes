@@ -15,28 +15,32 @@ const year = fullDate.getFullYear();
 
 startApp();
 
+//**Main function */
+
 function startApp() {
   form.addEventListener('submit', addTask);
+
+  //Read from local storage
+  document.addEventListener('DOMContentLoaded', loadStorage);
 }
 
 // **Function add task
 
 function addTask() {
-    const taskDate = `${day}/${month}/${year}`;
-    
-    if (text.value !== '') {
+  const taskDate = `${day}/${month}/${year}`;
 
+  if (text.value !== '') {
     const taskObject = {
       id: Date.now(),
       text: text.value,
       date: taskDate,
-      
     };
 
     task = [...task, taskObject];
     console.log(task);
-
+    storage();
     addNote(taskObject);
+
     form.reset();
   } else {
     console.log('error');
@@ -61,26 +65,39 @@ function addNote(task) {
 
   note.innerHTML = `
     
-    <div class="date">
+ <div class="date">
     <img src="/img/calendar.svg" alt="" />
     <p>${task.date}</p>
-  </div>
-  <div class="content">
-    <p>
-      ${task.text}
-    </p>
-  </div>
+      </div>
+     <div class="content">
+          <p>
+          ${task.text}
+         </p>
+      </div>
 
   <div class="bottom">
-    <div class="tag" id="tag">
+     <div class="tag" id="tag">
       <p>new</p>
-    </div>
+     </div>
 
-    <button class="remove" id="remove">
+     <button class="remove" id="remove">
       <img src="/img/trash.svg" alt="" />
-    </button>
-  </div>
+     </button>
+   </div>  
+  
     `;
 
   results.appendChild(note);
+}
+
+//** Storage */
+
+function storage() {
+  localStorage.setItem('notes', JSON.stringify(task));
+}
+
+//** LOAD Storage */
+
+function loadStorage() {
+  console.log('leyendo');
 }
