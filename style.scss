@@ -87,13 +87,12 @@ $bg-colours: (
   display: grid;
   gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  
 }
 
 //Styles for boxes
 
 .note {
-    box-shadow: 0 3px 0.3rem rgb(58 58 54 / 58%);
+  box-shadow: 0 3px 0.3rem rgb(58 58 54 / 58%);
   .date {
     display: flex;
 
@@ -139,13 +138,9 @@ $bg-colours: (
     }
   }
 }
-.errorForm{
-
-  svg{
-
-    width:281px !important;
+.errorForm {
+  svg {
+    width: 281px !important;
     height: 133px !important;
   }
 }
-
-

@@ -27,9 +27,16 @@ function startApp() {
   form.addEventListener('submit', addTask);
 
   //Read from local storage
+
   document.addEventListener('DOMContentLoaded', () => {
     task = JSON.parse(localStorage.getItem('notes')) || [];
-    addNote();
+
+    if (task.length <= 0) {
+      welcome();
+    } else {
+      results.removeChild(results.firstChild);
+      addNote();
+    }
   });
 }
 
@@ -48,11 +55,12 @@ function addTask() {
     task = [...task, taskObject];
 
     storage(task);
+
     addNote();
 
     form.reset();
   } else {
-    errorInput()
+    errorInput();
   }
 }
 
@@ -60,8 +68,10 @@ function addTask() {
 
 function addNote() {
   clearHtml();
+
   task.forEach((task) => {
     const note = document.createElement('div');
+
     note.classList.add(
       'note',
       'grid',
@@ -130,10 +140,9 @@ function clearHtml() {
   }
 }
 
-
 //**Error Input */
 
-function errorInput (){
+function errorInput() {
   while (errorForm.firstChild) {
     errorForm.removeChild(errorForm.firstChild);
   }
@@ -155,4 +164,19 @@ function errorInput (){
   setTimeout(() => {
     errorForm.classList.add('hidden');
   }, 2300);
+}
+
+//** Welcome function */
+
+function welcome() {
+  const welcomeText = document.createElement('p');
+  welcomeText.innerText = 'Hey 🖐️, welcome to your task book ';
+  welcomeText.classList.add(
+    'text',
+    'p-9',
+    'uppercase',
+    'text-center',
+    'welcome'
+  );
+  results.insertAdjacentElement('beforebegin', welcomeText);
 }
