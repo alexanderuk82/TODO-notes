@@ -1,9 +1,14 @@
 //Definig variables
 
 const form = document.getElementById('form');
+const errorForm = document.querySelector('.errorForm');
 const text = document.getElementById('input');
 const addBtn = document.getElementById('addBtn');
 const results = document.querySelector('.results__items');
+
+// Lotties here
+//=====================
+//Error lotties
 
 let task = [];
 
@@ -32,7 +37,7 @@ function startApp() {
 
 function addTask() {
   const taskDate = `${day}/${month}/${year}`;
-  console.log(taskDate);
+
   if (text.value !== '') {
     const taskObject = {
       id: Date.now(),
@@ -47,7 +52,27 @@ function addTask() {
 
     form.reset();
   } else {
-    console.log('error');
+    while (errorForm.firstChild) {
+      errorForm.removeChild(errorForm.firstChild);
+    }
+    errorForm.classList.remove('hidden');
+
+    const errorMessage = bodymovin.loadAnimation({
+      container: errorForm,
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: 'https://assets6.lottiefiles.com/packages/lf20_0pgmwzt3.json',
+    });
+
+    const error = document.createElement('p');
+    error.classList.add('text-red-400');
+    error.innerText = 'Opps something went wrong 🔻😒';
+    errorForm.appendChild(error);
+
+    setTimeout(() => {
+      errorForm.classList.add('hidden');
+    }, 2300);
   }
 }
 
