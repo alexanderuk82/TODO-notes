@@ -10,10 +10,9 @@ let task = [];
 // Dates
 
 const fullDate = new Date();
-const day = fullDate.getDay();
+const day = fullDate.getDate();
 const month = fullDate.getMonth();
 const year = fullDate.getFullYear();
-const currentDate = `${day}/${month}/${year}`;
 
 startApp();
 
@@ -33,7 +32,7 @@ function startApp() {
 
 function addTask() {
   const taskDate = `${day}/${month}/${year}`;
-
+  console.log(taskDate);
   if (text.value !== '') {
     const taskObject = {
       id: Date.now(),
