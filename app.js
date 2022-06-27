@@ -52,7 +52,7 @@ function addTask() {
       date: taskDate,
     };
 
-    task = [...task, taskObject];
+    task = [taskObject, ...task];
 
     storage(task);
 
