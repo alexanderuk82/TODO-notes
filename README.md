@@ -1,4 +1,4 @@
-<h1>Responsive Tod-Note-list</h1>
+<h1>Responsive Todo-Note-list</h1>
 <h2>What does contains?</h2>
 
 <p>THis is a creative list to do using Vanilla JS, Tailwind, and Sass</p>
