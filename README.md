@@ -10,4 +10,4 @@
 
 <p>Any question let me know!</p>
 
-<p><img src="search-properties.png" widt="80%"></p>
+<p><img src="todo-list-note.png" widt="80%"></p>
