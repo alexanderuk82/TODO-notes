@@ -163,7 +163,7 @@ function errorInput() {
 
   setTimeout(() => {
     errorForm.classList.add('hidden');
-  }, 2300);
+  }, 2800);
 }
 
 //** Welcome function */
